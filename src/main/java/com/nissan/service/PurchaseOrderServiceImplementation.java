@@ -48,6 +48,7 @@ public class PurchaseOrderServiceImplementation implements IPurchaseOrderService
 		purchaseOrder.setVendorId(_purchaseOrder.getVendorId());
 		purchaseOrder.setOrderDate(_purchaseOrder.getOrderDate());
 		purchaseOrder.setIsActive(_purchaseOrder.getIsActive());
+		purchaseOrder.setStatusId(_purchaseOrder.getStatusId());
 		return purchaseOrderRepository.save(purchaseOrder);
 	}
 
