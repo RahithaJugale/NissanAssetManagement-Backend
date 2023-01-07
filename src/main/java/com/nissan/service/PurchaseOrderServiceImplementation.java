@@ -5,11 +5,13 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.nissan.model.AssetMaster;
 import com.nissan.model.PurchaseOrder;
 import com.nissan.repo.IPurchaseOrderRepository;
 
+@Service
 public class PurchaseOrderServiceImplementation implements IPurchaseOrderService {
 
 	@Autowired
@@ -28,7 +30,7 @@ public class PurchaseOrderServiceImplementation implements IPurchaseOrderService
 			assetMaster.setAssetDefinitionId(purchaseOrder.getAssetDefinitionId());
 			assetMaster.setAssetTypeId(purchaseOrder.getAssetTypeId());
 			assetMaster.setVendorId(purchaseOrder.getVendorId());
-			assetMaster.setWarranty(false);
+			assetMaster.setPurchaseDate(purchaseOrder.getOrderDate());
 			assetMasterServiceImplementation.addNewAssetMaster(assetMaster);
 		}
 		return purchaseOrder;

@@ -29,19 +29,19 @@ public class PurchaseOrder {
 	private Integer statusId;
 	
 	@OneToOne
-	@JoinColumn(name="assetTypeId", referencedColumnName="assetTypeId")
+	@JoinColumn(name="assetTypeId", referencedColumnName="assetTypeId", insertable=false, updatable=false)
 	private AssetType assetType;
 	
 	@OneToOne
-	@JoinColumn(name="assetDefinitionId", referencedColumnName="assetDefinitionId")
+	@JoinColumn(name="assetDefinitionId", referencedColumnName="assetDefinitionId", insertable=false, updatable=false)
 	private AssetDefinition assetDefinition;
 	
 	@OneToOne
-	@JoinColumn(name="vendorId", referencedColumnName="vendorId")
+	@JoinColumn(name="vendorId", referencedColumnName="vendorId", insertable=false, updatable=false)
 	private Vendor vendor;
 	
 	@OneToOne
-	@JoinColumn(name="statusId", referencedColumnName="statusId")
+	@JoinColumn(name="statusId", referencedColumnName="statusId", insertable=false, updatable=false)
 	private PurchaseStatus purchaseStatus;
 
 	private Boolean isActive;

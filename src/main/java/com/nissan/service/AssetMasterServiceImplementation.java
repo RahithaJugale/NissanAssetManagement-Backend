@@ -34,6 +34,10 @@ public class AssetMasterServiceImplementation implements IAssetMasterService {
 		assetMaster.setModel(_assetMaster.getModel());
 		assetMaster.setSerialNumber(_assetMaster.getSerialNumber());
 		assetMaster.setManufacturingYear(_assetMaster.getManufacturingYear());
+		assetMaster.setWarranty(_assetMaster.getWarranty());
+		assetMaster.setPurchaseDate(_assetMaster.getManufacturingYear());
+		assetMaster.setWarrantyFrom(_assetMaster.getWarrantyFrom());
+		assetMaster.setWarrantyTo(_assetMaster.getWarrantyTo());
 		assetMaster.setIsActive(_assetMaster.getIsActive());
 
 		return assetMasterRepository.save(assetMaster);
