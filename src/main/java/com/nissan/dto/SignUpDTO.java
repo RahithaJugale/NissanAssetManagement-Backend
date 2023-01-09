@@ -11,7 +11,7 @@ public class SignUpDTO {
 	private Integer age;
 	private String gender;
 	private String address;
-	private Integer phoneNumber;
+	private Long phoneNumber;
 	
 	//default constructor
 	public SignUpDTO() {
@@ -20,7 +20,7 @@ public class SignUpDTO {
 
 	//parameterized constructor
 	public SignUpDTO(String emailId, String password, Integer typeId, String firstName, String lastName, Integer age,
-			String gender, String address, Integer phoneNumber) {
+			String gender, String address, Long phoneNumber) {
 		super();
 		this.emailId = emailId;
 		this.password = password;
@@ -98,11 +98,11 @@ public class SignUpDTO {
 		this.address = address;
 	}
 
-	public Integer getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

@@ -2,6 +2,8 @@ package com.nissan.util;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
 import com.nissan.common.AccessDeniedException;
 import com.nissan.model.Login;
 
@@ -9,6 +11,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+@Component
 public class JwtUtils {
 
 	//secret key
