@@ -25,8 +25,8 @@ public class VendorServiceImplementation implements IVendorService {
 	@Transactional
 	public Vendor addNewVendor(Vendor vendor) {
 		try {
-			if (((new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorTo()))
-					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorFrom())) > 0)) {
+			if (((new SimpleDateFormat("yyyy-MM-dd").parse(vendor.getVendorTo()))
+					.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(vendor.getVendorFrom())) > 0)) {
 				return vendorRepository.save(vendor);
 			}
 		} catch (Exception e) {
@@ -50,8 +50,8 @@ public class VendorServiceImplementation implements IVendorService {
 				vendor.setVendorTo(_vendor.getVendorTo());
 				vendor.setVendorAddress(_vendor.getVendorAddress());
 				vendor.setIsActive(_vendor.getIsActive());
-				if (((new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorTo()))
-						.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorFrom())) > 0)) {
+				if (((new SimpleDateFormat("yyyy-MM-dd").parse(vendor.getVendorTo()))
+						.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(vendor.getVendorFrom())) > 0)) {
 					return vendorRepository.save(vendor);
 				}
 			}

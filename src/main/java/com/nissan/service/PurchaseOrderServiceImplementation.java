@@ -31,8 +31,8 @@ public class PurchaseOrderServiceImplementation implements IPurchaseOrderService
 	@Transactional
 	public PurchaseOrder addNewPurchaseOrder(PurchaseOrder purchaseOrder) {
 		try {
-			if (((new SimpleDateFormat("dd/MM/yyyy").parse(purchaseOrder.getDeliveryDate()))
-					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(purchaseOrder.getOrderDate())) > 0)) {
+			if (((new SimpleDateFormat("yyyy-MM-dd").parse(purchaseOrder.getDeliveryDate()))
+					.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(purchaseOrder.getOrderDate())) > 0)) {
 				purchaseOrderRepository.save(purchaseOrder);
 				if (purchaseOrder.getStatusId() == 4) {
 					AssetMaster assetMaster = new AssetMaster();
@@ -66,8 +66,8 @@ public class PurchaseOrderServiceImplementation implements IPurchaseOrderService
 				purchaseOrder.setOrderDate(_purchaseOrder.getOrderDate());
 				purchaseOrder.setIsActive(_purchaseOrder.getIsActive());
 				purchaseOrder.setStatusId(_purchaseOrder.getStatusId());
-				if (((new SimpleDateFormat("dd/MM/yyyy").parse(purchaseOrder.getDeliveryDate()))
-						.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(purchaseOrder.getOrderDate())) > 0)) {
+				if (((new SimpleDateFormat("yyyy-MM-dd").parse(purchaseOrder.getDeliveryDate()))
+						.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(purchaseOrder.getOrderDate())) > 0)) {
 				return purchaseOrderRepository.save(purchaseOrder);
 			}
 
