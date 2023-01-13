@@ -1,6 +1,9 @@
 package com.nissan.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PostPersist;
@@ -12,6 +15,8 @@ import org.joda.time.DateTime;
 @Entity
 public class AssetMaster {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer assetMasterId;
 	private Integer assetTypeId;
 	private Integer vendorId;
@@ -25,15 +30,15 @@ public class AssetMaster {
 	private String warrantyTo;
 	
 	@OneToOne
-	@JoinColumn(name="assetTypeId", referencedColumnName="assetTypeId")
+	@JoinColumn(name="assetTypeId", referencedColumnName="assetTypeId", insertable=false, updatable=false)
 	private AssetType assetType;
 	
 	@OneToOne
-	@JoinColumn(name="vendorId", referencedColumnName="vendorId")
+	@JoinColumn(name="vendorId", referencedColumnName="vendorId", insertable=false, updatable=false)
 	private Vendor vendor;
 	
 	@OneToOne
-	@JoinColumn(name="assetDefinitionId", referencedColumnName="assetDefinitionId")
+	@JoinColumn(name="assetDefinitionId", referencedColumnName="assetDefinitionId", insertable=false, updatable=false)
 	private AssetDefinition assetDefinition;
 	
 	private Boolean isActive;

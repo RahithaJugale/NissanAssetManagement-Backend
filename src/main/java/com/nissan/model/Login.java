@@ -17,7 +17,7 @@ public class Login {
 	private Integer loginId;
 	
 	@Column(nullable=false)
-	private String username;
+	private String emailId;
 	
 	@Column(nullable=false)
 	private String password;
@@ -35,18 +35,18 @@ public class Login {
 	}
 
 	//parameterized constructor
-	public Login(Integer loginId, String username, String password, Integer typeId) {
+	public Login(Integer loginId, String emailId, String password, Integer typeId) {
 		super();
 		this.loginId = loginId;
-		this.username = username;
+		this.emailId = emailId;
 		this.password = password;
 		this.typeId = typeId;
 	}
 
-	public Login(Integer loginId, String username, String password, Integer typeId, UserType userType) {
+	public Login(Integer loginId, String emailId, String password, Integer typeId, UserType userType) {
 		super();
 		this.loginId = loginId;
-		this.username = username;
+		this.emailId = emailId;
 		this.password = password;
 		this.typeId = typeId;
 		this.userType = userType;
@@ -61,12 +61,12 @@ public class Login {
 		this.loginId = loginId;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmailId() {
+		return emailId;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public String getPassword() {
@@ -96,7 +96,7 @@ public class Login {
 	//toString()
 	@Override
 	public String toString() {
-		return "Login [loginId=" + loginId + ", username=" + username + ", password=" + password + ", typeId=" + typeId
+		return "Login [loginId=" + loginId + ", emailId=" + emailId + ", password=" + password + ", typeId=" + typeId
 				+ ", userType=" + userType + "]";
 	}
 	

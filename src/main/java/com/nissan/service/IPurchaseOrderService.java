@@ -3,6 +3,7 @@ package com.nissan.service;
 import java.util.List;
 
 import com.nissan.model.PurchaseOrder;
+import com.nissan.model.PurchaseStatus;
 
 public interface IPurchaseOrderService {
 	
@@ -20,4 +21,10 @@ public interface IPurchaseOrderService {
 	
 	//search purchase Order by id
 	PurchaseOrder searchPurchaseOrderById(Integer _purchaseOrderId);
+	
+	//get assetType name from Asset Definition Id
+	String getAssetTypeNameFromAssetDefinitionId(Integer _assetDefinitionId);
+	
+	//get purchase status
+	List<PurchaseStatus> getAllPurchaseStatus();
 }

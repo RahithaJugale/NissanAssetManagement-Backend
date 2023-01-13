@@ -3,28 +3,35 @@ package com.nissan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nissan.model.AssetDefinition;
 import com.nissan.service.IAssetDefinitionService;
-
+import com.nissan.util.JwtUtils;
+@CrossOrigin
 @RestController
 @RequestMapping("api/")
 public class AssetDefinitionController {
 	
 	@Autowired
 	IAssetDefinitionService assetDefinitionService;
+	
+	@Autowired
+	private JwtUtils jwtUtil;
 
 	// add new asset
 	@PostMapping("assets")
-	public AssetDefinition addNewAsset(@RequestBody AssetDefinition assetDefinition) {
+	public AssetDefinition addNewAsset(@RequestHeader(value="authorization", defaultValue="")String auth, @RequestBody AssetDefinition assetDefinition) throws Exception {
+		jwtUtil.verify(auth);
 		return assetDefinitionService.addNewAsset(assetDefinition);
 	}
 

@@ -24,7 +24,7 @@ public class UserRegistration {
 	private String address;
 	
 	@Column(nullable=false)
-	private Integer phoneNumber;
+	private Long phoneNumber;
 	private Integer loginId;
 	
 	@OneToOne
@@ -38,7 +38,7 @@ public class UserRegistration {
 
 	//parameterized constructor
 	public UserRegistration(Integer registrationId, String firstName, String lastName, Integer age, String gender,
-			String address, Integer phoneNumber, Integer loginId) {
+			String address, Long phoneNumber, Integer loginId) {
 		super();
 		this.registrationId = registrationId;
 		this.firstName = firstName;
@@ -51,7 +51,7 @@ public class UserRegistration {
 	}
 
 	public UserRegistration(Integer registrationId, String firstName, String lastName, Integer age, String gender,
-			String address, Integer phoneNumber, Integer loginId, Login login) {
+			String address, Long phoneNumber, Integer loginId, Login login) {
 		super();
 		this.registrationId = registrationId;
 		this.firstName = firstName;
@@ -113,11 +113,11 @@ public class UserRegistration {
 		this.address = address;
 	}
 
-	public Integer getPhoneNumber() {
+	public Long getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(Integer phoneNumber) {
+	public void setPhoneNumber(Long phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 
