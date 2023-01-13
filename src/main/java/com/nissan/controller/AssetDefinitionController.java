@@ -37,25 +37,29 @@ public class AssetDefinitionController {
 
 	// update an asset by Id
 	@PutMapping("assets/{_assetDefinitionId}")
-	public AssetDefinition updateAssetById(@PathVariable Integer _assetDefinitionId, @RequestBody AssetDefinition _assetDefinition) {
+	public AssetDefinition updateAssetById(@RequestHeader(value="authorization", defaultValue="")String auth, @PathVariable Integer _assetDefinitionId, @RequestBody AssetDefinition _assetDefinition) throws Exception {
+		jwtUtil.verify(auth);
 		return assetDefinitionService.updateAssetById(_assetDefinitionId, _assetDefinition);
 	}
 
 	// list all assets
 	@GetMapping("assets")
-	public List<AssetDefinition> listAllAssets() {
+	public List<AssetDefinition> listAllAssets(@RequestHeader(value="authorization", defaultValue="")String auth) throws Exception {
+		jwtUtil.verify(auth);
 		return assetDefinitionService.listAllAssets();
 	}
 
 	// delete an asset By Id
 	@DeleteMapping("assets/{_assetDefinitionId}")
-	public AssetDefinition deleteAssetById(@PathVariable Integer _assetDefinitionId) {
+	public AssetDefinition deleteAssetById(@RequestHeader(value="authorization", defaultValue="")String auth, @PathVariable Integer _assetDefinitionId) throws Exception {
+		jwtUtil.verify(auth);
 		return assetDefinitionService.deleteAssetById(_assetDefinitionId);
 	}
 
 	// search an asset by name
 	@GetMapping("assets/{_name}")
-	public AssetDefinition searchByAssetName(@PathVariable String _name) {
+	public AssetDefinition searchByAssetName(@RequestHeader(value="authorization", defaultValue="")String auth, @PathVariable String _name) throws Exception{
+		jwtUtil.verify(auth);
 		return assetDefinitionService.searchAssetByName(_name);
 	}
 }
