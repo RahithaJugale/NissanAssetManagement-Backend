@@ -1,5 +1,6 @@
 package com.nissan.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -23,10 +24,16 @@ public class VendorServiceImplementation implements IVendorService {
 	@Override
 	@Transactional
 	public Vendor addNewVendor(Vendor vendor) {
-		if (validation.isNameValid(vendor.getVendorName())) {
-			return vendorRepository.save(vendor);
+		try {
+			if (((new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorTo()))
+					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorFrom())) > 0)) {
+				return vendorRepository.save(vendor);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		return vendor;
+		return null;
+
 	}
 
 	// update vendor By Id
@@ -43,13 +50,16 @@ public class VendorServiceImplementation implements IVendorService {
 				vendor.setVendorTo(_vendor.getVendorTo());
 				vendor.setVendorAddress(_vendor.getVendorAddress());
 				vendor.setIsActive(_vendor.getIsActive());
-				return vendorRepository.save(vendor);
+				if (((new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorTo()))
+						.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(vendor.getVendorFrom())) > 0)) {
+					return vendorRepository.save(vendor);
+				}
 			}
 
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		return _vendor;
+		return null;
 	}
 
 	// list all vendors

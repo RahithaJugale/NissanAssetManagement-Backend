@@ -86,11 +86,11 @@ public class AssetDefinition {
 	}
 
 	//getters and setters
-	public Integer getAdId() {
+	public Integer getassetDefinitionId() {
 		return assetDefinitionId;
 	}
 
-	public void setAdId(Integer assetDefinitionId) {
+	public void setassetDefinitionId(Integer assetDefinitionId) {
 		this.assetDefinitionId = assetDefinitionId;
 	}
 

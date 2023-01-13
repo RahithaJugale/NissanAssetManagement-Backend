@@ -1,5 +1,6 @@
 package com.nissan.service;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -20,7 +21,15 @@ public class AssetMasterServiceImplementation implements IAssetMasterService {
 	@Override
 	@Transactional
 	public AssetMaster addNewAssetMaster(AssetMaster assetMaster) {
-		return assetMasterRepository.save(assetMaster);
+		try {
+			if (((new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyTo()))
+					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyFrom())) > 0)) {
+				return assetMasterRepository.save(assetMaster);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
 	}
 
 	// update AssetMaster by id
@@ -39,8 +48,16 @@ public class AssetMasterServiceImplementation implements IAssetMasterService {
 		assetMaster.setWarrantyFrom(_assetMaster.getWarrantyFrom());
 		assetMaster.setWarrantyTo(_assetMaster.getWarrantyTo());
 		assetMaster.setIsActive(_assetMaster.getIsActive());
+		try {
+			if (((new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyTo()))
+					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyFrom())) > 0)) {
+				return assetMasterRepository.save(assetMaster);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
-		return assetMasterRepository.save(assetMaster);
+		return null;
 	}
 
 	// list all AssetMaster

@@ -3,6 +3,7 @@ package com.nissan.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nissan.model.PurchaseOrder;
+import com.nissan.model.PurchaseStatus;
 import com.nissan.service.IPurchaseOrderService;
-
+@CrossOrigin
 @RestController
 @RequestMapping("api/")
 public class PurchaseOrderController {
@@ -50,5 +52,17 @@ public class PurchaseOrderController {
 	@GetMapping("purchaseOrders/{_purchaseOrderId}")
 	public PurchaseOrder searchPurchaseOrderById(@PathVariable Integer _purchaseOrderId) {
 		return purchaseOrderServiceImplementation.searchPurchaseOrderById(_purchaseOrderId);
+	}
+	
+//	get assetType name from Asset Definition id
+	@GetMapping("purchaseOrderAssets")
+	public String getAssetTypeName(@PathVariable Integer _assetDefinitionId) {
+		return purchaseOrderServiceImplementation.getAssetTypeNameFromAssetDefinitionId(_assetDefinitionId);
+	}
+	
+	//get all purchase status
+	@GetMapping("purchaseStatus")
+	public List<PurchaseStatus> getAllpurchaseStatus(){
+		return purchaseOrderServiceImplementation.getAllPurchaseStatus();
 	}
 }
