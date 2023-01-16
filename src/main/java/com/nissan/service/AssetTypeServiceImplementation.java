@@ -1,9 +1,12 @@
 package com.nissan.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,19 +17,37 @@ import com.nissan.repo.IAssetTypeRepository;
 
 @Service
 public class AssetTypeServiceImplementation implements IAssetTypeService {
-
+	
 	@Autowired
 	IAssetTypeRepository assetTypeRepository;
 
 	Validation validation = new Validation();
 
 	// add new asset type
+//	@Override
+//	@Transactional
+//	public AssetType addNewAssetType(AssetType assetType) {
+//		if (validation.isNameValid(assetType.getTypeName())) {
+//			return assetTypeRepository.save(assetType);
+//		}
+//		return null;
+//	}
+	
 	@Override
 	@Transactional
 	public AssetType addNewAssetType(AssetType assetType) {
-		if (validation.isNameValid(assetType.getTypeName())) {
-			return assetTypeRepository.save(assetType);
+		try {
+			if (validation.isNameValid(assetType.getTypeName())) {
+				System.out.println(new Date());
+//				System.out.println(assetType.getAssetTypeId());
+//				assetTypeRepository.insertOrUpdateAssetType(assetType.getAssetTypeId(), assetType.getTypeName(), assetType.getIsActive());
+				return assetType;
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e);
 		}
+		
 		return null;
 	}
 
