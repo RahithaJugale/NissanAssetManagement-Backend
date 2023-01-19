@@ -41,6 +41,7 @@ public class PurchaseOrderServiceImplementation implements IPurchaseOrderService
 					assetMaster.setVendorId(purchaseOrder.getVendorId());
 					assetMaster.setPurchaseDate(purchaseOrder.getOrderDate());
 					assetMaster.setIsActive(true);
+					assetMaster.setWarranty(true);
 					assetMasterServiceImplementation.addNewAssetMaster(assetMaster);
 				}
 				return purchaseOrder;
