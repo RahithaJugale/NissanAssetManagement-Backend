@@ -40,7 +40,7 @@ public class AssetTypeServiceImplementation implements IAssetTypeService {
 			if (validation.isNameValid(assetType.getTypeName())) {
 				System.out.println(new Date());
 //				System.out.println(assetType.getAssetTypeId());
-//				assetTypeRepository.insertOrUpdateAssetType(assetType.getAssetTypeId(), assetType.getTypeName(), assetType.getIsActive());
+				assetTypeRepository.insertOrUpdateAssetType(assetType.getAssetTypeId(), assetType.getTypeName(), assetType.getIsActive());
 				return assetType;
 			}
 			

@@ -1,6 +1,8 @@
 package com.nissan.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -22,9 +24,23 @@ public class AssetMasterServiceImplementation implements IAssetMasterService {
 	@Transactional
 	public AssetMaster addNewAssetMaster(AssetMaster assetMaster) {
 		try {
-			if (((new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyTo()))
-					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyFrom())) > 0)) {
-				return assetMasterRepository.save(assetMaster);
+			if(assetMaster.getAssetMasterId() == null) {
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+				Date now = new Date();
+				String date = formatter.format(now);
+				assetMaster.setWarrantyFrom(date);
+				
+				Calendar c = Calendar.getInstance();
+		        c.setTime(now);
+		        c.add(Calendar.YEAR, 1);
+		        Date dateTo = c.getTime();
+		        String toDate = formatter.format(dateTo);
+		        assetMaster.setWarrantyTo(toDate);	
+		        return assetMasterRepository.save(assetMaster);		
+			}
+			if (((new SimpleDateFormat("yyyy-MM-dd").parse(assetMaster.getWarrantyTo()))
+					.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(assetMaster.getWarrantyFrom())) > 0)) {
+				return assetMasterRepository.save(assetMaster);				
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -49,8 +65,8 @@ public class AssetMasterServiceImplementation implements IAssetMasterService {
 		assetMaster.setWarrantyTo(_assetMaster.getWarrantyTo());
 		assetMaster.setIsActive(_assetMaster.getIsActive());
 		try {
-			if (((new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyTo()))
-					.compareTo(new SimpleDateFormat("dd/MM/yyyy").parse(assetMaster.getWarrantyFrom())) > 0)) {
+			if (((new SimpleDateFormat("yyyy-MM-dd").parse(assetMaster.getWarrantyTo()))
+					.compareTo(new SimpleDateFormat("yyyy-MM-dd").parse(assetMaster.getWarrantyFrom())) > 0)) {
 				return assetMasterRepository.save(assetMaster);
 			}
 		} catch (Exception e) {
